@@ -1,0 +1,83 @@
+<DOCTYPE html>
+    <html lang="es">
+      <head>
+      
+        <!--Google Tag Manager-->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-K6V8KL9');</script>
+        <!-- End Google Tag Manager -->
+  
+      <meta charset="UTF-8">
+      <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Guerrero Tours</title>
+      <link rel="icon" type="image/png" href="./images/GuerreroLogo.png">
+      <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+      <link rel="stylesheet" href="./css/style.css">
+      <link rel="stylesheet" href="./css/regist.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+   
+      </head>
+  
+      <body>
+        <header>
+          <div class="logo">
+            <h3 class="btn-logo"><a href="PagInicial.html">Guerrero Tours</a></h3>
+          </div>
+  
+          <input type="checkbox"  id="menu" hidden>
+          <label for="menu">
+            <i class="bi bi-list-nested"></i>
+          </label>
+  
+          <nav>
+            <label for="menu">
+              <i class="bi bi-box-arrow-in-right"></i>
+            </label>
+            <ul>
+              <li><a href="./PagInicial.html">Home</a></li>
+              <li><a href="./Oferta.html">Tours</a></li>
+              <li><a href="Galeria.html">Gallery</li>
+              <li><a href="Contacto.html">Contact</a></li>
+            </ul>
+          </nav>
+        </header>
+  
+       
+  
+        <!--INICIO DE SESION DE GUERRERO TOURS-->
+
+        <div class="login-container">
+            <h2>Login</h2>
+            <form action="/login" method="POST">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+    
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+    
+                <button type="submit">Login</button>
+            </form>
+            <div class="oauth-buttons">
+                <button class="google" onclick="window.location.href='/auth/google'">
+                    Login with Google
+                </button>
+                <button class="microsoft" onclick="window.location.href='/auth/microsoft'">
+                    Login with Microsoft
+                </button>
+            </div>
+            <div class="register-link">
+                <p>Don't have an account? <a href="/register">Register</a></p>
+            </div>
+        </div>
+        
+        
+      </body>
+  
+    </html>
+      

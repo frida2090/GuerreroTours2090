@@ -1,0 +1,548 @@
+<DOCTYPE html>
+    <html lang="es">
+      <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Guerrero Tours</title>
+      <link rel="icon" type="image/png" href="./images/GuerreroLogo.png">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+      <link rel="stylesheet" href="./css/estilos.css">
+      <link rel="stylesheet" href="./css/style.css">
+
+
+      </head>
+
+      <style>
+        #carousel {
+            max-width: 800px;
+            margin: auto;
+        }
+        .c-item {
+            height: 500px;
+        }
+        .c-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .c-indicators button {
+            background-color: green !important;
+        }
+        .btn-green {
+            background-color: green;
+            border-color: green;
+        }
+        .btn-green:hover {
+            background-color: darkgreen;
+            border-color: darkgreen;
+        }
+
+        /*Estilo para tarjetas de tours*/
+        .details {
+            display: none;
+            margin-top: 10px;
+        }
+        .expanded .details {
+            display: block;
+        }
+        .card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-body {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /*diseño carrito de deseos*/
+.wishlist-sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Inicialmente oculta */
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -4px 0px 8px rgba(0,0,0,0.2);
+    transition: right 0.3s ease;
+    z-index: 500;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.wishlist-sidebar .wishlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 15px;
+}
+
+.wishlist-sidebar h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.wishlist-sidebar #wishlist-items {
+    list-style: none;
+    padding: 0;
+}
+
+.wishlist-sidebar #wishlist-items li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilo para el botón de cerrar */
+.wishlist-sidebar .close-btn {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Estilo para el botón que abre la sidebar */
+.wishlist-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff4081;
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+}
+
+.wishlist-btn:hover {
+    background-color: #e63946;
+}
+
+/* Contador de artículos en el ícono */
+.wishlist-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ff4081;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 50%;
+    font-size: 14px;
+}
+
+/* Botón de Finalizar dentro de la lista */
+#wishlist-items + #finish-btn {
+    background-color: #4CAF50;
+    width: 10%;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+
+
+
+
+/* Estilo para el botón de Finalizar dentro de la lista */
+#wishlist-items + #finish-btn {
+    background-color: #4CAF50;
+    width: 100%;  /* Asegúrate de que el botón de finalizar ocupe el ancho completo */
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#wishlist-items + #finish-btn:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para los botones dentro del sidebar */
+.wishlist-footer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#continue-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+#continue-btn:hover {
+    background-color: #0056b3;
+}
+
+#finish-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#finish-btn:hover {
+    background-color: #45a049;
+}
+
+/* Asegurar que la sidebar tenga espacio para los botones */
+.wishlist-sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#wishlist-items {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+  </style>
+    
+
+      <body>
+        
+        <header>
+            <div class="logo">
+              <h3 class="btn-logo"> <a href="PagInicial.html">Guerrero Tours</a></h3>
+            </div>
+    
+            <input type="checkbox"  id="menu" hidden>
+            <label for="menu">
+              <i class="bi bi-list-nested"></i>
+            </label>
+    
+            <nav>
+              <label for="menu">
+                <i class="bi bi-box-arrow-in-right"></i>
+              </label>
+              <ul>
+                <li><a href="./QuieneSomos.html">Home</a></li>
+                <li><a href="./Oferta.html">Tours</a></li>
+                <li><a href="Galeria.html">Gallery</a></li>
+                <li><a href="Contacto.html">Contact</a></li>
+              </ul>
+            </nav>
+
+
+          </header>
+
+          <!--Carrito de compras-->
+          <div id="wishlist-sidebar" class="wishlist-sidebar">
+            <div class="wishlist-header">
+                <h3>Lista de Deseos</h3>
+                <button id="close-wishlist" class="close-btn">&times;</button>
+            </div>
+          
+            <ul id="wishlist-items">
+                <!-- Los productos agregados aparecerán aquí -->
+            </ul>
+            <!-- Botón del corazón -->
+            <button id="open-wishlist" class="wishlist-btn">
+            <i class="fas fa-heart"></i>
+            <span id="wishlist-count" class="wishlist-count">0</span>
+            </button>
+            <!-- Botones DENTRO de un contenedor footer -->
+            <div class="wishlist-footer">
+                <button id="continue-btn" class="footer-btn">Continuar</button>
+                <button id="finish-btn" class="footer-btn">Finalizar</button>
+            </div>
+        </div>
+          
+          <script>
+            // Variables globales
+            let wishlistItems = [];
+          
+            // Abrir la sidebar
+            document.getElementById('open-wishlist').addEventListener('click', function() {
+                document.getElementById('wishlist-sidebar').style.right = '0';
+                updateWishlistCount();
+            });
+          
+            // Cerrar la sidebar
+            document.getElementById('close-wishlist').addEventListener('click', function() {
+                document.getElementById('wishlist-sidebar').style.right = '-300px';
+            });
+          
+            // Función para agregar productos a la lista de deseos
+            function addItemToWishlist(productName) {
+                if (!wishlistItems.includes(productName)) {
+                    wishlistItems.push(productName);
+                    updateWishlistDisplay();
+                    updateWishlistCount();
+                    alert(`${productName} ha sido agregado a tu lista de deseos!`);
+                } else {
+                    alert(`${productName} ya está en tu lista de deseos.`);
+                }
+            }
+          
+            // Actualizar la lista de deseos en la sidebar
+            function updateWishlistDisplay() {
+                const wishlist = document.getElementById('wishlist-items');
+                wishlist.innerHTML = '';
+                wishlistItems.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    wishlist.appendChild(li);
+                });
+            }
+          
+            // Actualizar el contador en el ícono de la lista de deseos
+            function updateWishlistCount() {
+                const count = document.getElementById('wishlist-count');
+                count.textContent = wishlistItems.length;
+            }
+          
+            // Acción del botón de "Continuar"
+            document.getElementById('continue-btn').addEventListener('click', function() {
+                alert("¡Continúa comprando y agregando productos a tu lista de deseos!");
+                document.getElementById('wishlist-sidebar').style.right = '-300px';
+            });
+          
+            // Acción del botón de "Finalizar"
+            document.getElementById('finish-btn').addEventListener('click', function() {
+                if (wishlistItems.length > 0) {
+                    alert("¡Gracias por comprar desde tu lista de deseos! Procederemos a finalizar tu compra.");
+                    // Aquí puedes redirigir a una página de pago o similar
+                } else {
+                    alert("Tu lista de deseos está vacía.");
+                }
+            });
+          </script>
+
+          <div class="container_ofert">
+            <h2 class="subtitle">Teotihuacan</h2>
+    
+<!--Carrusel de tours-->
+<div id="carousel" class="carousel slide mb-6" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    </div>
+  <div class="carousel-inner">
+      <div class="carousel-item active c-item">
+          <img src="./images/GlobosTeo.jpg" alt="Estadio">
+          <div class="container">
+              <div class="carousel-caption text-start">
+                  <h1>Example headline.</h1>
+                  <p class="opacity-75">Some representative placeholder content for the first slide of the carousel.</p>
+
+              </div>
+          </div>
+      </div>
+      <div class="carousel-item c-item">
+          <img src="./images/Basilica.jpg" alt="Basilica">
+          <div class="container">
+              <div class="carousel-caption">
+                  <h1>Another example headline.</h1>
+                  <p>Some representative placeholder content for the second slide of the carousel.</p>
+
+              </div>
+          </div>
+      </div>
+      <div class="carousel-item c-item">
+          <img src="./images/Teotihuacan.jpg" alt="Antropologia">
+          <div class="container">
+              <div class="carousel-caption text-end">
+                  <h1>One more for good measure.</h1>
+                  <p>Some representative placeholder content for the third slide of this carousel.</p>
+
+              </div>
+          </div>
+      </div>
+      <div class="carousel-item c-item">
+        <img src="./images/MayahuelT.jpg" alt="Antropologia">
+        <div class="container">
+            <div class="carousel-caption text-end">
+                <h1>One more for good measure.</h1>
+                <p>Some representative placeholder content for the third slide of this carousel.</p>
+
+            </div>
+        </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<br>
+
+            <p>Es quizá la zona arqueológica más famosa de México y las imágenes de sus imponentes pirámides han dado la vuelta al mundo.</p>
+            <p>La manera más tradicional para visitarlo y la propuesta para quien viene por primera vez.</p><br>
+
+            <h2 class="subtitle">Incluye: </h2>
+            <li>Visita a la zona arqueológica, con una duración de 5 a 7 horas.</li>
+            <li>Traslado desde la Ciudad de México u otra.</li>
+            <li>Boletos de admisión a la zona.</li>
+            <li>Visita guiada por la avenida principal.</li>
+            <li>Parada para fotos y guía en cada punto de interés.</li>
+            <li>Tiempo para alimentos (Si el cliente lo desea) tenemos sugerencias para cada gusto.</li>
+            <li>Demostración de los usos de la planta del Agave heredados desde la antigüedad y aun utilizados en nuestros dias.</li>
+            <li>Explicación de la importancia de la obsidiana (Por nuestro guía y guías locales).</li>
+
+            <h2 class="subtitle">Atractivos para combinaciones: </h2>
+            <li>Vuelo en Globo aerostático.</li>
+            <li>Vuelo en parapente.</li>
+            <li>Grutas.</li>
+            <li>Palacios y Museo de Murales.</li>
+            <li>Reino Animal.</li>
+            <li>Temazcal.</li>
+            <li>Senderismo.</li>
+          </div>
+
+          <!--Tarjetas de tours alternativos-->
+
+          <h1 class="Title">TOURS ALTERNATIVOS</h1>
+
+
+          <div class="album py-5 bg-body-tertiary">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <div class="col">
+                        <div class="card shadow-sm" id="card1">
+                            <img src="./images/GlobAmane.png" alt="">
+                            <div class="card-body">
+                                <h2 class="subtitle">Vuelo en Globo Teotihuacan</h2>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <div class="details">
+                                    <p>Additional information about the museum.</p>
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="toggleDetails('card1')">Close</button>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleDetails('card1')">View</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addItemToWishlist('Vuelo en Globo Teotihuacan')"><i class="fas fa-heart"></i> Agregar a deseos</button>
+                                    </div>
+                                    <small class="text-body-secondary">9 mins</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm" id="card2">
+                            <img src="./images/MuralesTeo.JPG" alt="">
+                            <div class="card-body">
+                                <h2 class="subtitle">Tour en Museo de Murales de Teotihuacan</h2>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <div class="details">
+                                    <p>Additional information about the museum.</p>
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="toggleDetails('card2')">Close</button>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleDetails('card2')">View</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addItemToWishlist('Tour en Museo de Murales de Teotihuacan')"><i class="fas fa-heart"></i> Agregar a deseos</button>
+                                    </div>
+                                    <small class="text-body-secondary">9 mins</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm" id="card3">
+                            <img src="./images/Teotihuacan.jpg" alt="">
+                            <div class="card-body">
+                                <h2 class="subtitle">Tour Zona Arqueologica de Teotihuacan</h2>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <div class="details">
+                                    <p>Additional information about the museum.</p>
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="toggleDetails('card3')">Close</button>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleDetails('card3')">View</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addItemToWishlist('Tour Zona Arqueologica de Teotihuacan')"><i class="fas fa-heart"></i> Agregar a deseos</button>
+                                    </div>
+                                    <small class="text-body-secondary">9 mins</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+          <script>
+            function toggleDetails(cardId) {
+                let card = document.getElementById(cardId);
+                card.classList.toggle("expanded");
+            }
+        </script>
+
+          
+          <h1 class="Title">TEOTIHUACAN</h1>
+
+          <main class="gallery">
+
+            <div class="gallery_item">
+              <img src="./images/TeoSol.jpg" alt="Vacacionistas">
+            </div>
+            <div class="gallery_item">
+              <img src="./images/GlobosTeo.jpg" alt="Turismo Religioso">
+            </div>
+            <div class="gallery_item">
+              <img src="./images/LunaT.jpg" alt="Turismo Ejecutivo">
+            </div>
+            <div class="gallery_item">
+              <img src="./images/Luna_1T.jpg" alt="Deportistas">
+            </div>
+            <div class="gallery_item">
+              <img src="./images/PiramideDelSol.jpg" alt="Deportistas">
+            </div>
+            <div class="gallery_item">
+              <img src="./images/GloboT.jpg" alt="Turismo Ecologico">
+            </div>
+            <div class="gallery_item">
+              <img src="./images/PiramideQuetzal.jpg" alt="Turismo Ecologico">
+            </div>
+            <div class="gallery_item">
+              <img src="./images/Teotihuacan.jpg" alt="Turismo Ecologico">
+            </div>
+            <div class="gallery_item">
+              <img src="./images/PiramideSol.jpg" alt="Turismo Ecologico">
+            </div>
+            <div class="gallery_item">
+              <img src="./images/Globos1.jpg" alt="Turismo Ecologico">
+            </div>
+      
+          </main>
+
+
+</body>
+
+      </body>
+
+    </html>

@@ -1,0 +1,307 @@
+<DOCTYPE html>
+    <html lang="es">
+      <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Guerrero Tours</title>
+      <link rel="icon" type="image/png" href="./images/GuerreroLogo.png">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+      <link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+      <link rel="stylesheet" href="./css/estilos.css">
+      <link rel="stylesheet" href="./css/style.css">
+
+      <style>
+        #carousel {
+            max-width: 800px;
+            margin: auto;
+        }
+        .c-item {
+            height: 500px;
+        }
+        .c-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .c-indicators button {
+            background-color: green !important;
+        }
+        .btn-green {
+            background-color: green;
+            border-color: green;
+        }
+        .btn-green:hover {
+            background-color: darkgreen;
+            border-color: darkgreen;
+        }
+
+        /*Estilo para tarjetas de tours*/
+        .details {
+            display: none;
+            margin-top: 10px;
+        }
+        .expanded .details {
+            display: block;
+        }
+        .card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-body {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+  </style>
+
+      </head>
+
+      <body>
+        
+        <header>
+            <div class="logo">
+              <h3 class="btn-logo"> <a href="PagInicial.html">Guerrero Tours</a></h3>
+            </div>
+    
+            <input type="checkbox"  id="menu" hidden>
+            <label for="menu">
+              <i class="bi bi-list-nested"></i>
+            </label>
+    
+            <nav>
+              <label for="menu">
+                <i class="bi bi-box-arrow-in-right"></i>
+              </label>
+              <ul>
+                <li><a href="./QuieneSomos.html">¿Quiénes somos?</a></li>
+                <li><a href="./Oferta.html">Oferta</a></li>
+                <li><a href="./Galeria.html">Tus Experiencias</a></li>
+                <li><a href="./Contacto.html">Contacto</a></li>
+              </ul>
+            </nav>
+          </header>
+
+          <div class="container_ofert">
+            <h2 class="subtitle">Xochimilco</h2>
+
+                        <!--Carrusel de tours-->
+<div id="carousel" class="carousel slide mb-6" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+    </div>
+  <div class="carousel-inner">
+      <div class="carousel-item active c-item">
+          <img src="./images/XochAman.jpg" alt="Zocalo">
+          <div class="container">
+              <div class="carousel-caption text-start">
+                  <h1>Example headline.</h1>
+                  <p class="opacity-75">Some representative placeholder content for the first slide of the carousel.</p>
+
+              </div>
+          </div>
+      </div>
+      <div class="carousel-item c-item">
+          <img src="./images/XochEcologico.jpg" alt="Zocalo">
+          <div class="container">
+              <div class="carousel-caption">
+                  <h1>Another example headline.</h1>
+                  <p>Some representative placeholder content for the second slide of the carousel.</p>
+
+              </div>
+          </div>
+      </div>
+      <div class="carousel-item c-item">
+          <img src="./images/XochMuertos.jpg" alt="EstudioFrida">
+          <div class="container">
+              <div class="carousel-caption text-end">
+                  <h1>One more for good measure.</h1>
+                  <p>Some representative placeholder content for the third slide of this carousel.</p>
+
+              </div>
+          </div>
+      </div>
+      <div class="carousel-item c-item">
+        <img src="./images/LagoX.jpg" alt="Antropologia">
+        <div class="container">
+            <div class="carousel-caption text-end">
+                <h1>One more for good measure.</h1>
+                <p>Some representative placeholder content for the third slide of this carousel.</p>
+            </div>
+        </div>
+    </div>
+    <div class="carousel-item c-item">
+      <img src="./images/RemeroXoch.jpg" alt="Tonalli">
+      <div class="container">
+          <div class="carousel-caption text-end">
+              <h1>One more for good measure.</h1>
+              <p>Some representative placeholder content for the third slide of this carousel.</p>
+
+          </div>
+      </div>
+  </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<br>
+    
+            <p>El primer lugar en ser habitado por las culturas Nahuatlacas de donde provienen los Aztecas, hoy pertenece al inventario de patrimonios naturales del mundo.</p>
+            <p>En su lago lleno de canales se pueden disfrutar paseos turísticos de pura diversión asi como didácticos dirigidos al cultivo y forma de vida sustentable y 
+                ecológica, de avistamiento de aves migratorias, amaneceres etc.</p>
+            <p>Pero no solo eso, podemos andar por sus calles, barrios y capillas, disfrutando del ambiente más local que podrás encontrar en la ciudad de México y mezclarte entre sus habitantes, bailes, peregrinaciones y festejos.</p>
+
+            <h2 class="subtitle">Tour Tradicional: </h2>
+            <li>Duración de 5 a 7 horas.</li>
+            <li>Traslado desde la zona céntrica de la Ciudad o zonas hoteleras.</li>
+            <li>Visita panorámica de atractivos en ruta a Xochimilco (Fuente de Cibeles, Colonia Condesa, Ciudad Universitaria, Zona Arqueológica de Cuicuilco).</li>
+            <li>Paseo en Trajinera por los canales de Xochimilco (1hora incluida) pueden ser más a petición del cliente.</li>
+
+            <h2 class="subtitle">Combinaciones: </h2>
+            <li>Xochimilco con Coyoacan y Casa de Frida Kahlo.</li>
+            <li>Xochimilco Con San Angel (Bazar del Sabado) (Casa estudio de Diego Rivera).</li>
+            <li>Xochimilco Ecológico (4 horas en la zona lacustre).</li>
+            <li>Especiales en Dia de Muertos (Isla de las Muñecas) (La llorona).</li>
+          </div>
+
+
+<!--Tarjetas de tours alternativos-->
+
+<h1 class="Title">TOURS ALTERNATIVOS</h1>
+
+
+<div class="album py-5 bg-body-tertiary">
+  <div class="container">
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div class="col">
+        <div class="card shadow-sm" id="card1">
+            <img src="./images/Amanecer.jpg" alt="">
+            <div class="card-body">
+                <h2 class="subtitle">Amanecer en Xochimilco</h2>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <div class="details">
+                    <p>Additional information about the museum.</p>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="toggleDetails('card1')">Close</button>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleDetails('card1')">View</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addToCart('Amanecer en Xochimilco')">Add to Cart</button>
+                    </div>
+                    <small class="text-body-secondary">9 mins</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+      <div class="card shadow-sm" id="card2">
+          <img src="./images/XochEcologico.jpg" alt="">
+          <div class="card-body">
+              <h2 class="subtitle">Tour Ecocologico en Xochimilco</h2>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <div class="details">
+                  <p>Additional information about the museum.</p>
+                  <button class="btn btn-sm btn-outline-secondary" onclick="toggleDetails('card2')">Close</button>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleDetails('card2')">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addToCart('Tour Ecocologico en Xochimilc')">Add to Cart</button>
+                  </div>
+                  <small class="text-body-secondary">9 mins</small>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col">
+    <div class="card shadow-sm" id="card3">
+        <img src="./images/XochMuertos.jpg" alt="">
+        <div class="card-body">
+            <h2 class="subtitle">Dia de Muertos en Xochimilco - La Llorona</h2>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <div class="details">
+                <p>Additional information about the museum.</p>
+                <button class="btn btn-sm btn-outline-secondary" onclick="toggleDetails('card3')">Close</button>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleDetails('card3')">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addToCart('Dia de Muertos en Xochimilco - La Llorona')">Add to Cart</button>
+                </div>
+                <small class="text-body-secondary">9 mins</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+  function toggleDetails(cardId) {
+      let card = document.getElementById(cardId);
+      card.classList.toggle("expanded");
+  }
+</script>
+
+          <h1 class="Title">XOCHIMILCO</h1>
+
+          <main class="gallery">
+
+            <div class="gallery_item">
+              <img src="./images/Xochimilco.jpg" alt="Vacacionistas">
+            </div>
+            <div class="gallery_item">
+              <img src="./images/XochAman.jpg" alt="Turismo Religioso">
+            </div>
+            <div class="gallery_item">
+              <img src="./images/Vacacionistas.jpg" alt="Turismo Ejecutivo">
+            </div>
+            <div class="gallery_item">
+              <img src="./images/KamineX.jpg" alt="Deportistas">
+            </div>
+            <div class="gallery_item">
+              <img src="./images/LagoX.jpg" alt="Deportistas">
+            </div>
+            <div class="gallery_item">
+              <img src="./images/VacaX.jpg" alt="Turismo Ecologico">
+            </div>
+            <div class="gallery_item">
+              <img src="./images/RemeroXoch.jpg" alt="Turismo Ecologico">
+            </div>
+            <div class="gallery_item">
+                <img src="./images/Amanecer.jpg" alt="Turismo Ecologico">
+            </div>
+            <div class="gallery_item">
+                <img src="./images/XochMuertos.jpg" alt="Turismo Ecologico">
+            </div>
+            <div class="gallery_item">
+                <img src="./images/TrajineraXoch.jpg" alt="Turismo Ecologico">
+            </div>
+      
+          </main>
+
+      </body>
+
+    </html>
