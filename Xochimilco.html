@@ -61,6 +61,164 @@
             flex-direction: column;
             justify-content: space-between;
         }
+
+
+                /*diseño carrito de deseos*/
+.wishlist-sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Inicialmente oculta */
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -4px 0px 8px rgba(0,0,0,0.2);
+    transition: right 0.3s ease;
+    z-index: 500;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.wishlist-sidebar .wishlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 15px;
+}
+
+.wishlist-sidebar h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.wishlist-sidebar #wishlist-items {
+    list-style: none;
+    padding: 0;
+}
+
+.wishlist-sidebar #wishlist-items li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilo para el botón de cerrar */
+.wishlist-sidebar .close-btn {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Estilo para el botón que abre la sidebar */
+.wishlist-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff4081;
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+}
+
+.wishlist-btn:hover {
+    background-color: #e63946;
+}
+
+/* Contador de artículos en el ícono */
+.wishlist-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ff4081;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 50%;
+    font-size: 14px;
+}
+
+/* Botón de Finalizar dentro de la lista */
+#wishlist-items + #finish-btn {
+    background-color: #4CAF50;
+    width: 10%;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+
+
+
+
+/* Estilo para el botón de Finalizar dentro de la lista */
+#wishlist-items + #finish-btn {
+    background-color: #4CAF50;
+    width: 100%;  /* Asegúrate de que el botón de finalizar ocupe el ancho completo */
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#wishlist-items + #finish-btn:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para los botones dentro del sidebar */
+.wishlist-footer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+#continue-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+#continue-btn:hover {
+    background-color: #0056b3;
+}
+
+#finish-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#finish-btn:hover {
+    background-color: #45a049;
+}
+
+/* Asegurar que la sidebar tenga espacio para los botones */
+.wishlist-sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#wishlist-items {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
   </style>
 
       </head>
@@ -89,6 +247,92 @@
               </ul>
             </nav>
           </header>
+
+
+<!--Carrito de compras-->
+<div id="wishlist-sidebar" class="wishlist-sidebar">
+    <div class="wishlist-header">
+        <h3>Lista de Deseos</h3>
+        <button id="close-wishlist" class="close-btn">&times;</button>
+    </div>
+  
+    <ul id="wishlist-items">
+        <!-- Los productos agregados aparecerán aquí -->
+    </ul>
+    <!-- Botón del corazón -->
+    <button id="open-wishlist" class="wishlist-btn">
+    <i class="fas fa-heart"></i>
+    <span id="wishlist-count" class="wishlist-count">0</span>
+    </button>
+    <!-- Botones DENTRO de un contenedor footer -->
+    <div class="wishlist-footer">
+        <button id="continue-btn" class="footer-btn">Continuar</button>
+        <button id="finish-btn" class="footer-btn">Finalizar</button>
+    </div>
+</div>
+  
+  <script>
+    // Variables globales
+    let wishlistItems = [];
+  
+    // Abrir la sidebar
+    document.getElementById('open-wishlist').addEventListener('click', function() {
+        document.getElementById('wishlist-sidebar').style.right = '0';
+        updateWishlistCount();
+    });
+  
+    // Cerrar la sidebar
+    document.getElementById('close-wishlist').addEventListener('click', function() {
+        document.getElementById('wishlist-sidebar').style.right = '-300px';
+    });
+  
+    // Función para agregar productos a la lista de deseos
+    function addItemToWishlist(productName) {
+        if (!wishlistItems.includes(productName)) {
+            wishlistItems.push(productName);
+            updateWishlistDisplay();
+            updateWishlistCount();
+            alert(`${productName} ha sido agregado a tu lista de deseos!`);
+        } else {
+            alert(`${productName} ya está en tu lista de deseos.`);
+        }
+    }
+  
+    // Actualizar la lista de deseos en la sidebar
+    function updateWishlistDisplay() {
+        const wishlist = document.getElementById('wishlist-items');
+        wishlist.innerHTML = '';
+        wishlistItems.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            wishlist.appendChild(li);
+        });
+    }
+  
+    // Actualizar el contador en el ícono de la lista de deseos
+    function updateWishlistCount() {
+        const count = document.getElementById('wishlist-count');
+        count.textContent = wishlistItems.length;
+    }
+  
+    // Acción del botón de "Continuar"
+    document.getElementById('continue-btn').addEventListener('click', function() {
+        alert("¡Continúa comprando y agregando productos a tu lista de deseos!");
+        document.getElementById('wishlist-sidebar').style.right = '-300px';
+    });
+  
+    // Acción del botón de "Finalizar"
+    document.getElementById('finish-btn').addEventListener('click', function() {
+        if (wishlistItems.length > 0) {
+            alert("¡Gracias por comprar desde tu lista de deseos! Procederemos a finalizar tu compra.");
+            // Aquí puedes redirigir a una página de pago o similar
+        } else {
+            alert("Tu lista de deseos está vacía.");
+        }
+    });
+  </script>
+
+
 
           <div class="container_ofert">
             <h2 class="subtitle">Xochimilco</h2>
@@ -206,7 +450,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleDetails('card1')">View</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addToCart('Amanecer en Xochimilco')">Add to Cart</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addItemToWishlist('Amanecer en Xochimilco')"><i class="fas fa-heart"></i> Agregar a deseos</button>
                     </div>
                     <small class="text-body-secondary">9 mins</small>
                 </div>
@@ -226,7 +470,7 @@
               <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                       <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleDetails('card2')">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addToCart('Tour Ecocologico en Xochimilc')">Add to Cart</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addItemToWishlist('Tour Ecocologico en Xochimilco')"><i class="fas fa-heart"></i> Agregar a deseos</button>
                   </div>
                   <small class="text-body-secondary">9 mins</small>
               </div>
@@ -246,7 +490,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleDetails('card3')">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addToCart('Dia de Muertos en Xochimilco - La Llorona')">Add to Cart</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addItemToWishlist('Dia de Muertos en Xochimilco - La Llorona')"><i class="fas fa-heart"></i> Agregar a deseos</button>
                 </div>
                 <small class="text-body-secondary">9 mins</small>
             </div>
