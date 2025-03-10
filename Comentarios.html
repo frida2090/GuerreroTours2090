@@ -8,11 +8,9 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="./css/estilos.css">
     <link rel="stylesheet" href="./css/style.css">
-<style>
+    <style>
       /* Estilo del formulario */
-      .form-group {
-          margin: 15px 0;
-      }
+      .form-group { margin: 15px 0; }
 
       textarea {
           width: 100%;
@@ -32,9 +30,7 @@
           cursor: pointer;
       }
 
-      button:hover {
-          background-color: #0056b3;
-      }
+      button:hover { background-color: #0056b3; }
     </style>
 </head>
 
@@ -44,16 +40,7 @@
         <div class="logo">
           <h3 class="btn-logo"> <a href="PagInicial.html">Guerrero Tours</a></h3>
         </div>
-
-        <input type="checkbox" id="menu" hidden>
-        <label for="menu">
-          <i class="bi bi-list-nested"></i>
-        </label>
-
         <nav>
-          <label for="menu">
-            <i class="bi bi-box-arrow-in-right"></i>
-          </label>
           <ul>
             <li><a href="./QuieneSomos.html">Home</a></li>
             <li><a href="./Oferta.html">Tours</a></li>
@@ -67,59 +54,103 @@
 
     <div class="form-floating">
       <p>Selecciona a tu guía:</p>
-      <select class="form-select" id="floatingSelect">
+      <select class="form-select" id="floatingSelectGuia">
           <option selected>Selecciona un guía</option>
           <option value="1">Santiago Guerrero Contreras</option>
           <option value="2">Santiago Guerrero Herrera</option>
       </select>
-  </div> <br>
+    </div> <br>
 
     <div class="form-floating">
       <p>Selecciona el tour que realizaste:</p>
-      <select class="form-select" id="floatingSelect">
-          <option selected>Selecciona un tour</option>
-          <option value="1">Teotihuacan</option>
-          <option value="2">Xochimilco</option>
-          <option value="3">Centro Histórico</option>
+      <select class="form-select" id="floatingSelectTour">
+          <option selected>Cargando tours...</option>
       </select>
-  </div> <br>
+    </div> <br>
   
-  <form action="#" method="post">
-    <p>Rango de satisfacción: </p>
-    <div class="range" style="display: flex; align-items: center;">
-        <input type="range" id="calidad" name="calidad" min="1" max="5" value="3" oninput="updateRangeValue()" style="margin-right: 20px;">
-        <div class="stars" style="display: flex; justify-content: space-between; width: 200px;">
-            <span class="star" data-value="1">★</span>
-            <span class="star" data-value="2">★</span>
-            <span class="star" data-value="3">★</span>
-            <span class="star" data-value="4">★</span>
-            <span class="star" data-value="5">★</span>
-        </div>
-    </div>
-</form> <br> 
+    <form id="comentario-form">
+      <p>Rango de satisfacción: </p>
+      <div class="range" style="display: flex; align-items: center;">
+          <input type="range" id="calidad" name="calidad" min="1" max="5" value="3" oninput="updateRangeValue()" style="margin-right: 20px;">
+          <div class="stars" style="display: flex; justify-content: space-between; width: 200px;">
+              <span class="star" data-value="1">★</span>
+              <span class="star" data-value="2">★</span>
+              <span class="star" data-value="3">★</span>
+              <span class="star" data-value="4">★</span>
+              <span class="star" data-value="5">★</span>
+          </div>
+      </div> <br>
 
-  <form id="comentario-form">
-    <h3>Deja tu comentario</h3>
-    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
-    <textarea id="mensaje" name="mensaje" placeholder="Escribe tu comentario" required></textarea>
-    <button type="submit" class="btn-comentar">Enviar comentario</button>
-</form>
-  
+      <h3>Deja tu comentario</h3>
+      <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+      <textarea id="mensaje" name="mensaje" placeholder="Escribe tu comentario" required></textarea>
+      <button type="submit" class="btn-comentar">Enviar comentario</button>
+    </form>
+
 <script>
   function updateRangeValue() {
-        const rangeValue = document.getElementById('calidad').value;
-        const stars = document.querySelectorAll('.star');
-        stars.forEach(star => {
-            if (star.getAttribute('data-value') <= rangeValue) {
-                star.style.color = 'gold';
-            } else {
-                star.style.color = 'gray';
-            }
-        });
-    }
-    
-    // Initialize the star color based on the default value
-    window.onload = updateRangeValue;
+      const rangeValue = document.getElementById('calidad').value;
+      const stars = document.querySelectorAll('.star');
+      stars.forEach(star => {
+          if (star.getAttribute('data-value') <= rangeValue) {
+              star.style.color = 'gold';
+          } else {
+              star.style.color = 'gray';
+          }
+      });
+  }
+  window.onload = updateRangeValue;
+
+  document.addEventListener("DOMContentLoaded", async function() {
+      const userId = obtenerIdUsuarioDesdeURL();
+      const tourSelect = document.getElementById("floatingSelectTour");
+
+      try {
+          const response = await fetch(`/api/tours/${userId}`);
+          const tours = await response.json();
+
+          tourSelect.innerHTML = ""; // Limpia opciones previas
+          tours.forEach(tour => {
+              const option = document.createElement("option");
+              option.value = tour.id;
+              option.textContent = tour.nombre;
+              tourSelect.appendChild(option);
+          });
+      } catch (error) {
+          console.error("Error cargando tours:", error);
+          tourSelect.innerHTML = "<option>Error al cargar</option>";
+      }
+  });
+
+  function obtenerIdUsuarioDesdeURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("id");
+  }
+
+  document.getElementById("comentario-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Evita la recarga de la página
+
+    // Obtener valores del formulario
+    const nombre = document.getElementById("nombre").value;
+    const mensaje = document.getElementById("mensaje").value;
+    const rango = document.getElementById("calidad").value;
+
+    // Crear un objeto de comentario
+    const comentario = {
+        nombre: nombre,
+        mensaje: mensaje,
+        rango: "⭐".repeat(rango) // Convierte el número en estrellas
+    };
+
+    // Guardar en localStorage
+    let comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
+    comentarios.push(comentario);
+    localStorage.setItem("comentarios", JSON.stringify(comentarios));
+
+    // Redirigir a Galeria.html
+    window.location.href = "./Galeria.html";
+});
+
 </script>
 
 </body>

@@ -11,66 +11,72 @@
     <link rel="stylesheet" href="./css/style.css">
 
     <style>
-      .comentarios {
-          width: 80%;
-          margin: 40px auto;
-          text-align: center;
-          font-family: Arial, sans-serif;
-      }
-    
-      .section-title {
-          font-size: 2rem;
-          color: #0c8006;
-          margin-bottom: 20px;
-      }
-    
-      .comentario-box {
-          display: flex;
-          flex-direction: column;
-          gap: 15px;
-          max-width: 600px;
-          margin: auto;
-      }
-    
-      .comentario {
-          display: flex;
-          align-items: center;
-          background: #f5f5f5;
-          padding: 15px;
-          border-radius: 8px;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-    
-      .avatar {
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          margin-right: 15px;
-      }
-    
-      .contenido {
-          text-align: left;
-      }
-    
-      .rango {
-          color: #FFD700;
-          font-size: 1.2rem;
-      }
-    
-      .btn-comentar {
-          margin-top: 20px;
-          padding: 10px 20px;
-          background: #0c8006;
-          color: white;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          transition: background 0.3s;
-      }
-    
-      .btn-comentar:hover {
-          background: #399f2e;
-      }
+      /* Sección de comentarios */
+.comentarios-container {
+    width: 90%;
+    display: flex;
+    justify-content: center;  /* Centra la sección */
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 0;
+}
+
+/* Caja de comentarios */
+.comentario-box {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Contenedor de cada comentario */
+.comentario {
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Imagen del avatar */
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+/* Contenido del comentario */
+.contenido {
+    flex: 1;
+}
+
+/* Estilo para las estrellas de calificación */
+.rango {
+    color: #FFD700;
+    font-size: 1.2rem;
+}
+
+/* Botón de dejar un comentario */
+.btn-comentar {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #0c8006;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+/* Efecto hover en el botón */
+.btn-comentar:hover {
+    background: #399f2e;
+}
+
     </style>
 
 </head>
@@ -155,11 +161,12 @@
             </div>
           </main>
 
-    <h1 class="Title">Comentarios</h1>
-    <h2>¡Calificanos!</h2> 
-      <!-- Sección de Comentarios -->
-<section class="comentarios">
-  <div class="comentario-box">
+    <!-- Comentarios -->
+<h1 class="Title">Comentarios</h1>
+<h2>¡Calificanos!</h2> 
+<!-- Sección de Comentarios -->
+<section class="comentarios-container">
+  <div class="comentario-box" id="comentarios-container">
       <div class="comentario">
           <img src="usuario1.jpg" alt="Usuario" class="avatar">
           <div class="contenido">
@@ -179,6 +186,31 @@
 </section>
 
 
+    <script>
+  document.addEventListener("DOMContentLoaded", function() {
+      // Obtener contenedor de comentarios
+      const comentariosContainer = document.getElementById("comentarios-container");
+
+      // Recuperar comentarios desde localStorage
+      let comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
+
+      // Si hay comentarios, agregarlos a la página
+      comentarios.forEach(comentario => {
+          const div = document.createElement("div");
+          div.classList.add("comentario");
+
+          div.innerHTML = `
+              <img src="usuario1.jpg" alt="Usuario" class="avatar">
+              <div class="contenido">
+                  <h4>${comentario.nombre} <span class="rango">${comentario.rango}</span></h4>
+                  <p>${comentario.mensaje}</p>
+              </div>
+          `;
+
+          comentariosContainer.appendChild(div);
+      });
+  });
+</script>
 
 
   </body>
