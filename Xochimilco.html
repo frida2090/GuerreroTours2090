@@ -14,6 +14,79 @@
       <link rel="stylesheet" href="./css/style.css">
 
       <style>
+
+                /*Diseño de carrito en  nav*/
+                nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 10px 20px;
+}
+
+/* Estilos de la lista de navegación */
+ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    margin: 0 10px;
+}
+
+/* Estilos del botón de menú */
+.menu-icon {
+    font-size: 1.8rem;
+    cursor: pointer;
+    position: absolute;
+    left: 20px;
+}
+
+.wishlist-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Tamaño del círculo */
+    height: 40px;
+    background-color: rgb(233, 71, 125); /* Fondo del círculo */
+    border: 2px solid rgb(233, 71, 125); /* Borde del círculo */
+    border-radius: 50%; /* Hace que sea un círculo */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Sombra para un mejor efecto */
+}
+
+.wishlist-icon a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.wishlist-icon i {
+    font-size: 20px;
+    color: white; /* Color del icono */
+}
+
+.wishlist-icon span {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: rgb(219, 204, 204);
+    font-size: 12px;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    line-height: 18px;
+    font-weight: bold;
+    border: 2px solid white;
+}
+
         #carousel {
             max-width: 800px;
             margin: auto;
@@ -63,7 +136,7 @@
         }
 
 
-                /*diseño carrito de deseos*/
+/*diseño carrito de deseos*/
 .wishlist-sidebar {
     position: fixed;
     top: 0;
@@ -218,16 +291,23 @@
             </label>
     
             <nav>
-              <label for="menu">
-                <i class="bi bi-box-arrow-in-right"></i>
-              </label>
-              <ul>
-                <li><a href="./QuieneSomos.html">¿Quiénes somos?</a></li>
-                <li><a href="./Oferta.html">Oferta</a></li>
-                <li><a href="./Galeria.html">Tus Experiencias</a></li>
-                <li><a href="./Contacto.html">Contacto</a></li>
-              </ul>
-            </nav>
+                <label for="menu">
+                  <i class="bi bi-box-arrow-in-right"></i>
+                </label>
+                <ul>
+                  <li><a href="./QuieneSomos.html">Home</a></li>
+                  <li><a href="./Oferta.html">Tours</a></li>
+                  <li><a href="Galeria.html">Gallery</a></li>
+                  <li><a href="Contacto.html">Contact</a></li>
+                  <li class="wishlist-icon" id="open-wishlist">
+                    <a href="">
+                        <i class="bi bi-suit-heart-fill"></i>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <script src="wishlist.js"></script>
+
           </header>
 
 
@@ -253,66 +333,7 @@
     </div>
 </div>
   
-  <script>
-    // Variables globales
-    let wishlistItems = [];
-  
-    // Abrir la sidebar
-    document.getElementById('open-wishlist').addEventListener('click', function() {
-        document.getElementById('wishlist-sidebar').style.right = '0';
-        updateWishlistCount();
-    });
-  
-    // Cerrar la sidebar
-    document.getElementById('close-wishlist').addEventListener('click', function() {
-        document.getElementById('wishlist-sidebar').style.right = '-300px';
-    });
-  
-    // Función para agregar productos a la lista de deseos
-    function addItemToWishlist(productName) {
-        if (!wishlistItems.includes(productName)) {
-            wishlistItems.push(productName);
-            updateWishlistDisplay();
-            updateWishlistCount();
-            alert(`${productName} ha sido agregado a tu lista de deseos!`);
-        } else {
-            alert(`${productName} ya está en tu lista de deseos.`);
-        }
-    }
-  
-    // Actualizar la lista de deseos en la sidebar
-    function updateWishlistDisplay() {
-        const wishlist = document.getElementById('wishlist-items');
-        wishlist.innerHTML = '';
-        wishlistItems.forEach(item => {
-            const li = document.createElement('li');
-            li.textContent = item;
-            wishlist.appendChild(li);
-        });
-    }
-  
-    // Actualizar el contador en el ícono de la lista de deseos
-    function updateWishlistCount() {
-        const count = document.getElementById('wishlist-count');
-        count.textContent = wishlistItems.length;
-    }
-  
-    // Acción del botón de "Continuar"
-    document.getElementById('continue-btn').addEventListener('click', function() {
-        alert("¡Continúa comprando y agregando productos a tu lista de deseos!");
-        document.getElementById('wishlist-sidebar').style.right = '-300px';
-    });
-  
-    // Acción del botón de "Finalizar"
-    document.getElementById('finish-btn').addEventListener('click', function() {
-        if (wishlistItems.length > 0) {
-            alert("¡Gracias por comprar desde tu lista de deseos! Procederemos a finalizar tu compra.");
-            // Aquí puedes redirigir a una página de pago o similar
-        } else {
-            alert("Tu lista de deseos está vacía.");
-        }
-    });
-  </script>
+  <script src="./js/Wishlist.js"></script>
 
 
 
