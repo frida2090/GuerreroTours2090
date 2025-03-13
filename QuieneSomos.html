@@ -15,6 +15,266 @@
 
     
     <style>
+
+                /*Diseño de carrito en  nav*/
+                nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 10px 20px;
+}
+
+/* Estilos de la lista de navegación */
+ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    margin: 0 10px;
+}
+
+/* Estilos del botón de menú */
+.menu-icon {
+    font-size: 1.8rem;
+    cursor: pointer;
+    position: absolute;
+    left: 20px;
+}
+
+.wishlist-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Tamaño del círculo */
+    height: 40px;
+    background-color: rgb(233, 71, 125); /* Fondo del círculo */
+    border: 2px solid rgb(233, 71, 125); /* Borde del círculo */
+    border-radius: 50%; /* Hace que sea un círculo */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Sombra para un mejor efecto */
+}
+
+.wishlist-icon a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.wishlist-icon i {
+    font-size: 20px;
+    color: white; /* Color del icono */
+}
+
+.wishlist-icon span {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: rgb(219, 204, 204);
+    font-size: 12px;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    line-height: 18px;
+    font-weight: bold;
+    border: 2px solid white;
+}
+
+        #carousel {
+            max-width: 800px;
+            margin: auto;
+        }
+        .c-item {
+            height: 500px;
+        }
+        .c-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .c-indicators button {
+            background-color: green !important;
+        }
+        .btn-green {
+            background-color: green;
+            border-color: green;
+        }
+        .btn-green:hover {
+            background-color: darkgreen;
+            border-color: darkgreen;
+        }
+
+        /*Estilo para tarjetas de tours*/
+        .details {
+            display: none;
+            margin-top: 10px;
+        }
+        .expanded .details {
+            display: block;
+        }
+        .card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-body {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+
+/*diseño carrito de deseos*/
+.wishlist-sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Inicialmente oculta */
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -4px 0px 8px rgba(0,0,0,0.2);
+    transition: right 0.3s ease;
+    z-index: 500;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.wishlist-sidebar .wishlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 15px;
+}
+
+.wishlist-sidebar h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.wishlist-sidebar #wishlist-items {
+    list-style: none;
+    padding: 0;
+}
+
+.wishlist-sidebar #wishlist-items li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilo para el botón de cerrar */
+.wishlist-sidebar .close-btn {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Estilo para el botón que abre la sidebar */
+.wishlist-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff4081;
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+}
+
+.wishlist-btn:hover {
+    background-color: #e63946;
+}
+
+/* Contador de artículos en el ícono */
+.wishlist-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ff4081;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 50%;
+    font-size: 14px;
+}
+
+/* Estilo para el botón de Finalizar dentro de la lista */
+#wishlist-items + #finish-btn {
+    background-color: #4CAF50;
+    width: 100%;  /* Asegúrate de que el botón de finalizar ocupe el ancho completo */
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+
+
+/* Estilos para los botones dentro del sidebar */
+.wishlist-footer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+#continue-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+#continue-btn:hover {
+    background-color: #0056b3;
+}
+
+#finish-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#finish-btn:hover {
+    background-color: #45a049;
+}
+
+/* Asegurar que la sidebar tenga espacio para los botones */
+.wishlist-sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#wishlist-items {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
         #carousel {
             max-width: 800px;
             margin: auto;
@@ -115,8 +375,19 @@
             <li><a href="./Oferta.html">Tours</a></li>
             <li><a href="Galeria.html">Gallery</a></li>
             <li><a href="Contacto.html">Contact</a></li>
+            <li class="login-icon" id="">
+              <a href="./login.html">
+                  <i class="bi bi-person-circle"></i>
+              </a>
+            </li>
+            <li class="wishlist-icon" id="open-wishlist">
+              <a href="">
+                  <i class="bi bi-suit-heart-fill"></i>
+              </a>
+            </li>
           </ul>
         </nav>
+        <script src="wishlist.js"></script>
       </header>
 
       
