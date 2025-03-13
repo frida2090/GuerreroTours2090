@@ -16,6 +16,94 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <style>
+
+/* Estilo general para las tarjetas */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 450px; /* Tamaño máximo de la tarjeta */
+  margin: 0 auto; /* Centrado de las tarjetas */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagen dentro de la tarjeta */
+.card-img-top {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  max-height: 250px; /* Limitar la altura de la imagen */
+  object-fit: cover; /* Para que la imagen se recorte adecuadamente */
+}
+
+/* Título de la tarjeta */
+.card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Texto dentro de la tarjeta */
+.card-text {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Estilo del botón */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* Espaciado y márgenes */
+.card-body {
+  padding: 15px;
+}
+
+/* Parte responsiva de las card */
+@media (max-width: 767px) {
+  .card {
+    max-width: 200px; /* ajuste de tamaño responsivo a movil */
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-text {
+    font-size: 0.85rem;
+  }
+
+  .btn-primary {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+}
+
+
+    </style>
  
 </head>
 
@@ -67,53 +155,41 @@
             <h2 class="subtitle">Tours a tu medida</h2>
           
            <div class="col-lg-4 col-xs-12  text-center">
-            <div class="box">
-                <i class="bi bi-buildings-fill bi-5x" aria-hidden="true"></i>
-              <div class="box-title">
-                <h3>City Tour</h3>
+            <div class="card">
+              <img src="./images/Zocalo.jpg" class="card-img-top" alt="Imagen de Zocalo">
+              <div class="card-body">
+                <h5 class="card-title">City Tour</h5>
+                <p class="card-text">Se refiere a la combinación de actividades que pueden hacerse en la Ciudad de México, que es donde nos encontramos basados.</p>
+                <a href="./Ciudad.html" class="btn btn-primary">Leer más</a>
               </div>
-              <div class="box-text">
-                <span>Se refiere a la combinación de actividades que pueden hacerse en la Ciudad de México, que es donde nos encontramos basados.</span>
-              </div>
-              <div class="box-btn">
-                  <a href="./Ciudad.html">Leer más</a>
-              </div>
-             </div>
-          </div>	 
+            </div>
+          </div>
+
           
-           <div class="col-lg-4 col-xs-12 text-center">
-            <div class="box">
-                <i class="bi bi-image-alt bi-5x" aria-hidden="true"></i>
-              <div class="box-title">
-                <h3>Teotihuacan</h3>
+          
+          <div class="col-lg-4 col-md-6 col-xs-12 text-center">
+            <div class="card">
+              <img src="./images/Teotihuacan.jpg" class="card-img-top" alt="Imagen de Teotihuacan">
+              <div class="card-body">
+                <h5 class="card-title">Teotihuacan</h5>
+                <p class="card-text">Es quizá la zona arqueológica más famosa de México y las imágenes de sus imponentes pirámides han dado la vuelta al mundo.</p>
+                <a href="./Teotihuacan.html" class="btn btn-primary">Leer más</a>
               </div>
-              <div class="box-text">
-                <span>Es quizá la zona arqueológica más famosa de México y las imágenes de sus imponentes pirámides han dado la vuelta al mundo.</span>
-              </div>
-              <div class="box-btn">
-                  <a href="./Teotihuacan.html">Leer más</a>
-              </div>
-             </div>
-          </div>	 
+            </div>
+          </div>
+          
           
           <div class="col-lg-4 col-xs-12 text-center">
-            <div class="box">
-                        <i class="bi bi-image-alt bi-5x" aria-hidden="true"></i>
-              <div class="box-title">
-                <h3>Xochimilco</h3>
+            <div class="card">
+              <img src="./images/XochEcologico.jpg" class="card-img-top" alt="Imagen de Xochimilco">
+              <div class="card-body">
+                <h5 class="card-title">Xochimilco</h5>
+                <p class="card-text">El primer lugar en ser habitado por las culturas Nahuatlacas de donde provienen los Aztecas, hoy pertenece al inventario de patrimonios naturales del mundo.</p>
+                <a href="./Xochimilco.html" class="btn btn-primary">Leer más</a>
               </div>
-              <div class="box-text">
-                <span>El primer lugar en ser habitado por las culturas Nahuatlacas de donde provienen los Aztecas, hoy pertenece al inventario de patrimonios naturales del mundo.</span>
-              </div>
-              <div class="box-btn">
-                  <a href="./Xochimilco.html">Leer más</a>
-              </div>
-             </div>
-          </div>	 
-          
-
-        </div>		
+            </div>	 
+         </div>		
         </div>
     </div>
-
+</div>
 </body>
