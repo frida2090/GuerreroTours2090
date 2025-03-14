@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guerrero Tours</title>
     <link rel="icon" type="image/png" href="./images/GuerreroLogo.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/estilos.css">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <style>
     /* Estilo general para las tarjetas */
@@ -76,37 +77,23 @@
     }
 
     /* Parte responsiva de las card */
-    @media (max-width: 767px) {
-        .card {
-            max-width: 100%; /* Ajustar el tamaño para pantallas pequeñas */
-        }
-
-        .card-title {
-            font-size: 1rem;
-        }
-
-        .card-text {
-            font-size: 0.85rem;
-        }
-
-        .btn-primary {
-            font-size: 0.85rem;
-            padding: 6px 12px;
-        }
-    }
-
-    /* Estilos adicionales para garantizar que la vista no se mueva */
-    body, html {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        overflow-x: hidden; /* Evitar el desplazamiento horizontal */
-    }
-
-    .container_ofert, .social-box {
+    @media (max-width: 768px) {
+    .container_ofert {
         max-width: 100%;
         padding: 20px;
     }
+
+    .social-box .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .col-lg-4, .col-md-6, .col-xs-12 {
+        width: 100%;
+    }
+}
+
+
 
     .social-box .row {
         display: flex;
@@ -117,6 +104,42 @@
     .col-lg-4, .col-md-6, .col-xs-12 {
         margin-bottom: 15px;
     }
+
+
+
+    /* Contenedor principal para el contenido */
+
+    .container {
+    max-width: 100%;
+    overflow: hidden;
+}
+    .container_ofert, .social-box {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+.container_ofert p, .container_ofert li {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+    text-align: left;
+}
+
+
+.social-box .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Mejora la estructura de las columnas */
+.col-lg-4, .col-md-6, .col-xs-12 {
+    display: flex;
+    justify-content: center;
+}
+
 
     </style>
 </head>
@@ -155,7 +178,9 @@
           </ul>
         </nav>
         <script src="wishlist.js"></script>
+    </header>
 
+    
       <div class="container_ofert">
         <h2 class="subtitle">Oferta</h2>
 

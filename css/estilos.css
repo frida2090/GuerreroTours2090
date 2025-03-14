@@ -17,37 +17,31 @@
     margin: 0 auto;
 }
 
-body{
+body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    min-height: 100%;
-    /*display: flex;*/
+    min-height: 100vh;
     align-items: center;
     justify-content: center;
     background: #fff;
     padding-inline: 20px;
-    padding-top: 60px;
-  }
+    padding-top: 80px; /* Ajusta según la altura del header */
+    margin: 0;
+    overflow-x: hidden; /* Evita desplazamiento horizontal */
+}
   
-  header{
-    position: fixed;
-    top: 0;
-    left: 0;
+header {
     width: 100%;
-    z-index: 100;
-
-    width: 100vw;
-    height: 7vh;
+    height: 60px;
     background: #F5F7FA;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    /*border-radius: 10px;*/
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 100;
-  }
+    z-index: 1000;
+}
   
   
   .logo, nav ul li a, label{
